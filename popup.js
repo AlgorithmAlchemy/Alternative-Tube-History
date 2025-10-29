@@ -1,4 +1,4 @@
-// Добавление видео в историю
+
 document.getElementById('addVideo').addEventListener('click', () => {
     const videoUrl = document.getElementById('videoUrl').value.trim();
 
@@ -14,17 +14,16 @@ document.getElementById('addVideo').addEventListener('click', () => {
 
             chrome.storage.local.set({ videoHistory: history }, () => {
                 displayHistory();
-                document.getElementById('videoUrl').value = ''; // Очистить поле ввода
+                document.getElementById('videoUrl').value = ''; 
             });
         });
     }
 });
 
-// Отображение истории
 function displayHistory() {
     chrome.storage.local.get(['videoHistory'], (result) => {
         const historyList = document.getElementById('historyList');
-        historyList.innerHTML = ''; // Очищаем список
+        historyList.innerHTML = ''; 
 
 
         const history = result.videoHistory || [];
@@ -37,14 +36,14 @@ function displayHistory() {
     });
 }
 
-// Очистка истории
+
 document.getElementById('clearHistory').addEventListener('click', () => {
     chrome.storage.local.remove(['videoHistory'], () => {
-        displayHistory(); // Обновить отображение истории
+        displayHistory(); 
     });
 });
 
-// Экспорт истории
+
 document.getElementById('exportHistory').addEventListener('click', () => {
     chrome.storage.local.get(['videoHistory'], (result) => {
         const history = result.videoHistory || [];
